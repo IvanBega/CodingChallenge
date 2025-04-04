@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\assets",
+    "\\src",
+    "\\src\\Magna.Dexsys.FileHandler",
+    "\\src\\Magna.Dexsys.FileHandler\\Magna.Dexsys.FileHandler",
+    "\\src\\Magna.Dexsys.FileHandler\\Magna.Dexsys.FileHandler.Cli",
+    "\\src\\Magna.Dexsys.FileHandler\\Magna.Dexsys.FileHandler\\Models",
+    "\\src\\Magna.Dexsys.FileHandler\\Magna.Dexsys.FileHandler\\Services"
+  ],
+  "SelectedNode": "\\src\\Magna.Dexsys.FileHandler\\Magna.Dexsys.FileHandler\\Services\\FileSearchService.cs",
+  "PreviewInSolutionExplorer": false
+}

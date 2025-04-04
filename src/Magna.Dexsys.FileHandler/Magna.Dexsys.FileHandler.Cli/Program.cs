@@ -6,8 +6,8 @@ namespace Magna.Dexsys.FileHandler.Cli;
 
 public class Program
 {
-    private const string _fileLocation = "C:\\temp\\generatedFiles";
-    private const string _searchValue = "OLD";
+    private const string _fileLocation = "C:\\Users\\ibega\\Downloads\\generatedFiles\\generatedFiles";
+    private const string _searchValue = "IVAN";
 
     public static void Main(string[] args)
     {
