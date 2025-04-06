@@ -37,7 +37,6 @@ public class FileSearchService
             {
                 Interlocked.Increment(ref count);
                 _filesLocatedBag.Add(new FileDetails(directory, file, contents.Length, contents));
-                count++;
             }
         });
 
