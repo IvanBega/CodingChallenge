@@ -4,6 +4,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,20 +28,31 @@ public class FileSearchService
     /// <returns>Return the number of files located</returns>
     public int LocateFilesContainingSearchValue(string directory, string searchValue)
     {
-        var files = Directory.EnumerateFiles(directory); 
-        int count = 0;
+        ArgumentException.ThrowIfNullOrEmpty(directory);
+        ArgumentException.ThrowIfNullOrEmpty(searchValue);
 
-        Parallel.ForEach(files, file =>
+        try
         {
-            string contents = File.ReadAllText(file);
-            if (contents.IndexOf(searchValue) >= 0)
-            {
-                Interlocked.Increment(ref count);
-                _filesLocatedBag.Add(new FileDetails(directory, file, contents.Length, contents));
-            }
-        });
 
-        _filesLocated.AddRange(_filesLocatedBag);
-        return count;
+            var files = Directory.EnumerateFiles(directory);
+
+            Parallel.ForEach(files, file =>
+            {
+                string contents = File.ReadAllText(file, Encoding.Unicode);
+                if (contents.Contains(searchValue))
+                {
+                    _filesLocatedBag.Add(new FileDetails(file, Path.GetFileName(file), contents.Length, contents));
+                }
+            });
+
+            _filesLocated.AddRange(_filesLocatedBag);
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+
+         
+        return _filesLocatedBag.Count;
     }
 }
